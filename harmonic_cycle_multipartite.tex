@@ -1,0 +1,507 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.98in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue!45!black, citecolor=blue!45!black, urlcolor=blue!45!black, pdftitle={Sharp harmonic cycle-length inequalities for complete multipartite graphs}}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{booktabs}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize Harmonic cycle-length inequalities}
+\fancyhead[R]{\footnotesize Preprint --- 9 October 2026}
+\fancyfoot[C]{\footnotesize \thepage\,/\,\pageref{LastPage}}
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0.14em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\cset}{\mathcal{C}}
+\newcommand{\hc}{\mathsf{s}}
+\newcommand{\HH}{H}
+\newcommand{\edges}{e}
+\newcommand{\vcover}{\tau}
+\newcommand{\N}{\mathbb N}
+\title{\bfseries Sharp Harmonic Cycle-Length Inequalities\\for Complete Multipartite Graphs\\[5pt]
+\large With bounded-cover and near-balanced extensions}
+\author{\textit{Author name and affiliation to be inserted}}
+\date{9 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a finite simple graph $G$, let $\cset(G)$ be the set of distinct lengths of its simple cycles and let
+$\hc(G)=\sum_{\ell\in\cset(G)}\ell^{-1}$.  A conjecture of Erd\H{o}s asserts that if $n\ge 2d$ and
+$\edges(G)\ge d(n-d)$, then $\hc(G)\ge \frac12(H_d-1)$, with equality only for $K_{d,n-d}$.
+We prove a sharp version for every complete multipartite graph, for every integer $d\ge 2$,
+under the weaker hypothesis $\edges(G)>(d-1)(n-d+1)$.  The proof is based on an exact
+classification of the cycle-length spectrum of complete multipartite graphs.
+We also establish the original inequality, with its equality characterization, for graphs
+having a vertex cover of size at most $d$ under an explicit order hypothesis, and for
+arbitrary graphs in the near-balanced range $d\ge4$, $2d\le n\le2d+4$.
+The latter proof invokes classical theorems of Brandt, Erd\H{o}s--Gallai, and Moon--Moser.
+These are restricted-family results, not a proof of the unrestricted conjecture.
+\end{abstract}
+\noindent\textbf{Keywords.} Cycle lengths; harmonic sums; complete multipartite graphs;
+Erd\H{o}s--Hajnal conjecture; extremal graph theory; pancyclicity.\\
+\noindent\textbf{2020 Mathematics Subject Classification.} 05C38, 05C35.
+
+\section{Introduction}
+We work throughout with finite, undirected, simple graphs.  For a graph $G$ of order $n$, define
+\[
+\cset(G)=\{\ell\in\{3,\dots,n\}:G\text{ contains a cycle of length }\ell\},
+\qquad \hc(G)=\sum_{\ell\in\cset(G)}\frac1\ell.
+\]
+Write $H_t=\sum_{j=1}^{t}j^{-1}$ for the $t$th harmonic number and
+\[
+B_d=\sum_{j=2}^{d}\frac1{2j}=\frac12(H_d-1).
+\]
+The complete bipartite graph $K_{d,n-d}$ has
+$\cset(K_{d,n-d})=\{4,6,\ldots,2d\}$ whenever $n\ge 2d$; hence
+$\hc(K_{d,n-d})=B_d$.
+
+A sharp form of the Erd\H{o}s--Hajnal harmonic cycle-length problem asks whether
+\begin{equation}\label{eq:erdos}
+ n\ge 2d,\quad \edges(G)\ge d(n-d)
+ \qquad\Longrightarrow\qquad
+ \hc(G)\ge B_d,
+\end{equation}
+with equality only when $G\cong K_{d,n-d}$; see \cite{MMPS,EP}.
+Montgomery, Milojevi\'c, Pokrovskiy, and Sudakov \cite{MMPS} recently established the
+stronger edge-threshold version for all sufficiently large $d$.  It is important that this
+known theorem does not state a uniform result for every $d\ge2$.
+
+Our main result proves their sharp edge-threshold inequality for 
+\emph{all} $d\ge2$ under the complete multipartite hypothesis.  We give an exact
+cycle-spectrum formula rather than assuming a general pancyclicity theorem.
+Two additional results concern graphs whose structure is less rigid: one has an
+unbounded number of vertices but a small vertex cover; the other applies to
+arbitrary graphs in a short near-balanced interval of orders.
+
+\begin{theorem}[Sharp complete multipartite case]\label{thm:main}
+Let $d\ge 2$ and $n\ge2d$ be integers.  If $G$ is a complete multipartite graph
+on $n$ vertices and
+\begin{equation}\label{eq:sharp}
+\edges(G)>(d-1)(n-d+1),
+\end{equation}
+then
+\[
+\hc(G)\ge B_d.
+\]
+Equality holds if and only if $G\cong K_{d,n-d}$.
+The strict threshold in \eqref{eq:sharp} cannot be weakened to a non-strict one,
+even within complete multipartite graphs.
+\end{theorem}
+
+The two extensions are as follows.
+\begin{theorem}[Bounded vertex cover]\label{thm:cover}
+Let $d\ge2$ and $n\ge2d+\binom d2$.  If an $n$-vertex graph $G$ satisfies
+$\vcover(G)\le d$ and $\edges(G)\ge d(n-d)$, then
+$\hc(G)\ge B_d$, with equality if and only if $G\cong K_{d,n-d}$.
+\end{theorem}
+Here $\vcover(G)$ denotes the minimum size of a vertex cover.
+
+\begin{theorem}[Arbitrary graphs in a near-balanced range]\label{thm:band}
+If $d\ge4$ and $2d\le n\le2d+4$, then every $n$-vertex graph $G$ with
+$\edges(G)\ge d(n-d)$ satisfies $\hc(G)\ge B_d$, with equality
+if and only if $G\cong K_{d,n-d}$.
+\end{theorem}
+
+\section{The complete multipartite cycle spectrum}
+We start with a precise classification that supplies the principal combinatorial
+input.  The graph $G$ is \emph{complete multipartite} if its vertex set is a
+partition into nonempty independent classes, and two vertices are adjacent precisely
+when they belong to different classes.
+
+\begin{lemma}[Capped selection]\label{lem:capacity}
+Let $a_1,\ldots,a_r$ be positive integers, $r\ge3$, with sum $n$, and put
+$b=\max_i a_i$.  Suppose $b<n/2$.  Then for every $3\le\ell\le n$, with
+$q=\lfloor\ell/2\rfloor$, one has
+\begin{equation}\label{eq:capacity}
+\sum_{i=1}^{r}\min(a_i,q)\ge\ell.
+\end{equation}
+\end{lemma}
+\begin{proof}
+If all $a_i\le q$, the left side equals $n\ge\ell$.
+If exactly one class has size greater than $q$, that class contributes $q$.
+The other classes together have $n-b>b>q$ vertices, so they contribute
+at least $q+1$; here their sizes are individually at most $q$.
+Thus the sum is at least $2q+1\ge\ell$.
+Finally, if two or more classes exceed $q$, their combined contribution
+is at least $2q$.  This is enough when $\ell=2q$.  When $\ell=2q+1$,
+there is at least one further nonempty class, unless three or more already
+exceed $q$, in either event contributing at least one extra unit.
+This proves \eqref{eq:capacity}.
+\end{proof}
+
+\begin{proposition}[Exact cycle-length spectrum]\label{prop:spectrum}
+Let $G$ be complete multipartite, with $r\ge2$ nonempty classes,
+$n$ vertices, largest class size $b$, and $s=n-b$.
+\begin{enumerate}[label=(\roman*),itemsep=0.2em]
+\item If $r=2$, then $\cset(G)=\{4,6,\ldots,2s\}$.
+\item If $r\ge3$, then
+\begin{equation}\label{eq:spectrum}
+\cset(G)=\{3,4,\ldots,\min(n,2s)\}.
+\end{equation}
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+For (i), $G=K_{b,s}$ with $b\ge s$, so the alternating cycles have
+exactly the lengths displayed, and a bipartite graph has no odd cycle.
+
+For (ii), first suppose $b\ge s$.  There are at least two classes
+outside the largest class, so $s\ge2$.
+For $2\le q\le s$ select $q$ vertices in the largest class and
+$q$ vertices outside it.  Their complete bipartite cross-edges
+contain a $2q$-cycle.
+For $1\le q\le s-1$, select $q$ vertices in the largest class and
+$q+1$ outside vertices in such a way that no outside class
+contributes more than $q$ vertices.  This is possible because the
+outside classes have total size $s\ge q+1$ and at least two are
+nonempty: if one exceeds $q$, the others contribute at least one;
+otherwise all $s$ vertices are eligible.  The selected $(2q+1)$-vertex
+induced graph has every class of size at most $q$ and hence minimum
+degree at least $(2q+1)-q=q+1$.  Dirac's Hamiltonicity theorem
+\cite{Dirac} (also valid for order three) supplies a cycle of length
+$2q+1$.  All lengths $3,4,\ldots,2s$ occur.
+
+No cycle can use more than $s$ vertices from the largest class:
+vertices of that class are independent, and successive such vertices
+around a cycle must be separated by distinct vertices outside the class.
+Therefore every cycle has length at most $2s$.  As $b\ge s$,
+$\min(n,2s)=2s$, proving \eqref{eq:spectrum} in this case.
+
+Now suppose $b<s$, or equivalently $b<n/2$.  Fix $3\le\ell\le n$
+and let $q=\lfloor\ell/2\rfloor$.  Lemma~\ref{lem:capacity}
+allows the selection of exactly $\ell$ vertices, with at most $q$
+from any class.  The induced complete multipartite graph has minimum
+degree at least $\ell-q=\lceil\ell/2\rceil$.  Dirac's theorem
+therefore supplies an $\ell$-cycle.  Every length from 3 through
+$n$ occurs, completing the proof.
+\end{proof}
+
+\begin{corollary}[Exact harmonic sum]\label{cor:formula}
+With the notation of Proposition~\ref{prop:spectrum},
+\[
+\hc(G)=
+\begin{cases}
+\frac12(H_s-1),&r=2,\\[3pt]
+H_{\min(n,2s)}-\frac32,&r\ge3.
+\end{cases}
+\]
+\end{corollary}
+\begin{proof}
+Sum the reciprocals of the lengths listed in
+Proposition~\ref{prop:spectrum}.
+\end{proof}
+
+\section{Proof of the sharp multipartite theorem}
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Let the class sizes of $G$ be $a_1\ge\cdots\ge a_r>0$, where
+$r\ge2$, $b=a_1$, and $s=n-b$.  The case $r=1$ is ruled out by
+\eqref{eq:sharp}.
+
+Suppose first that $r=2$.  The graph is $K_{s,n-s}$, with
+$s\le n/2$ and $\edges(G)=s(n-s)$.  The function
+$x\mapsto x(n-x)$ is strictly increasing on integers
+$0\le x\le n/2$.
+Because
+\[
+(s(n-s))\ >\ (d-1)(n-d+1),
+\]
+we must have $s\ge d$.  Hence Corollary~\ref{cor:formula} gives
+\[
+\hc(G)=\frac12(H_s-1)\ge\frac12(H_d-1)=B_d,
+\]
+with equality exactly when $s=d$, i.e., $G\cong K_{d,n-d}$.
+
+Suppose now that $r\ge3$.  Every edge has at least one endpoint
+outside the largest class, so $\edges(G)\le sn$.
+We claim that $2s\ge d$.  If not, then $s\le(d-1)/2$, yielding
+\[
+\edges(G)\le sn\le\frac{(d-1)n}{2}
+ < (d-1)(n-d+1),
+\]
+because $n\ge2d$ implies $n-d+1>n/2$.
+This contradicts \eqref{eq:sharp}.  Therefore $2s\ge d$.
+Set $L=\min(n,2s)$.  Since $n\ge2d$, it follows that $L\ge d$.
+Moreover $s\ge2$, hence $L\ge4$ and $H_L\ge H_4=25/12>2$.
+Using Corollary~\ref{cor:formula},
+\[
+\hc(G)=H_L-\frac32
+>\frac12(H_L-1)\ge\frac12(H_d-1)=B_d.
+\]
+Thus equality cannot occur when $r\ge3$.
+
+Finally, the threshold is sharp: $K_{d-1,n-d+1}$ has
+$(d-1)(n-d+1)$ edges and
+\[
+\hc(K_{d-1,n-d+1})=B_{d-1}<B_d,
+\]
+where $B_1=0$ for $d=2$.  This completes the proof.
+\end{proof}
+
+\begin{corollary}[The conjectured edge threshold inside the class]\label{cor:target}
+If $G$ is complete multipartite, $n\ge2d$, and
+$\edges(G)\ge d(n-d)$, then $\hc(G)\ge B_d$,
+with equality only for $K_{d,n-d}$.
+\end{corollary}
+\begin{proof}
+For $n\ge2d$,
+\[
+d(n-d)-(d-1)(n-d+1)=n-2d+1>0.
+\]
+Apply Theorem~\ref{thm:main}.
+\end{proof}
+
+\section{A bounded vertex-cover extension}
+\begin{proof}[Proof of Theorem~\ref{thm:cover}]
+Let $S$ be a vertex cover of minimum size $q\le d$ and put
+$T=V(G)\setminus S$.  The set $T$ is independent, whence
+\begin{equation}\label{eq:cover-upper}
+\edges(G)\le q(n-q)+\binom q2
+=qn-\frac{q(q+1)}2.
+\end{equation}
+The right side is increasing for integral $0\le q\le d$ under
+$n\ge2d$.  If $q\le d-1$, then
+\[
+\edges(G)\le(d-1)n-\frac{d(d-1)}2< d(n-d)
+\]
+where the strict inequality follows from
+$n\ge2d+\binom d2>\frac{d(d+1)}2$.
+This contradicts our edge hypothesis, so $q=d$.
+
+Write $Y=V(G)\setminus S$, and let $r=\edges(G[S])$.
+Let $t$ count the edges missing between $S$ and $Y$.
+The two independent- and cross-edge contributions give
+\[
+\edges(G)=d(n-d)-t+r\ge d(n-d),
+\quad\text{so}\quad 0\le t\le r\le\binom d2.
+\]
+At most $t$ vertices of $Y$ are incident with a missing
+cross-edge.  Consequently at least
+\[
+(n-d)-t\ge n-d-\binom d2\ge d
+\]
+vertices of $Y$ are adjacent to every vertex of $S$.
+These vertices and $S$ contain $K_{d,d}$, which contributes
+every even cycle length $4,6,\ldots,2d$.  Hence $\hc(G)\ge B_d$.
+
+If $r>0$, an edge inside $S$, together with any vertex of $Y$
+adjacent to all of $S$, forms a triangle.  This gives the
+additional length three and strictly increases $\hc(G)$.
+If $r=0$, then $t=0$; as $Y$ is independent, the graph is
+exactly $K_{d,n-d}$.  The converse equality is immediate.
+\end{proof}
+
+\begin{remark}
+The sufficient size condition in Theorem~\ref{thm:cover} is not
+asserted optimal.  Its conclusion applies to graphs with arbitrary
+edges inside $S$ and nonuniform neighborhoods in $Y$, so it does
+not follow merely from Theorem~\ref{thm:main}.
+\end{remark}
+
+\section{A near-balanced theorem for arbitrary graphs}
+We give the external results used in this section in the precise
+forms needed below.  Brandt's theorem \cite{Brandt}, also recorded
+in \cite[Theorem 2.5]{MMPS}, states that a nonbipartite $n$-vertex
+graph with more than $(n-1)^2/4+1$ edges has cycles of every length
+from 3 to its circumference.  Erd\H{o}s--Gallai \cite{EG}
+shows that a graph with $m$ edges and $n$ vertices has a cycle
+of length at least $2m/(n-1)$ whenever $m\ge n$.
+The Moon--Moser bipartite Ore condition \cite[Corollary 3]{MoonMoser}
+states that a balanced bipartite graph with $q$ vertices in each class
+is Hamiltonian if every nonadjacent pair $x,y$ in opposite classes
+satisfies $\deg(x)+\deg(y)>q$.
+
+\begin{lemma}[Robust balanced bipartite Hamiltonicity]\label{lem:hami}
+Let $q\ge3$.  If at most $q-2$ edges are removed from $K_{q,q}$,
+then the remaining graph has a Hamiltonian cycle.
+\end{lemma}
+\begin{proof}
+Write $t\le q-2$ for the number of missing edges.  For
+nonadjacent opposite-class vertices $x,y$, let $m_x,m_y$ denote
+the numbers of their missing cross-edges.  The absent edge $xy$
+is counted twice in $m_x+m_y$, whereas every other missing edge
+is counted at most once.  Thus $m_x+m_y\le t+1$, whence
+\[
+\deg(x)+\deg(y)=2q-(m_x+m_y)
+\ge 2q-t-1\ge q+1>q.
+\]
+The cited Moon--Moser criterion gives a Hamiltonian cycle.
+\end{proof}
+
+\begin{lemma}[Covering four missing cross-edges]\label{lem:four}
+The edge set of any bipartite graph having at most four edges
+can be covered by at most two vertices from each bipartition class.
+\end{lemma}
+\begin{proof}
+If some vertex has degree at least three, select that vertex;
+at most one edge remains uncovered, and one endpoint of that edge
+completes the cover.  If the maximum degree is two, select a
+vertex of degree two.  Of the at most two remaining edges, choose
+an endpoint on the side opposite the selected vertex for each,
+using one selected vertex on the first side and at most two on
+the other.  Finally, if every vertex has degree at most one, the
+edges form a matching of size at most four.  Choose an endpoint
+on the first side of at most two matching edges and an endpoint
+on the second side of the remaining edges.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:band}]
+Write $n=2d+r$ with $0\le r\le4$.
+
+\emph{Case 1: $G$ is nonbipartite.}
+A direct calculation yields
+\begin{equation}\label{eq:brandt-diff}
+ d(n-d)-\left(\frac{(n-1)^2}{4}+1\right)
+ =\frac{4d-4-(r-1)^2}{4}>0,
+\end{equation}
+since $d\ge4$ and $(r-1)^2\le9$.
+Brandt's criterion therefore supplies cycles of all lengths
+from 3 to the circumference $c(G)$.
+By the Erd\H{o}s--Gallai estimate,
+\[
+ c(G)\ge\frac{2\edges(G)}{n-1}
+ \ge\frac{2d(n-d)}{n}\ge d.
+\]
+(The last inequality uses $n\ge2d$.)  Hence
+\[
+\hc(G)\ge H_d-\frac32
+>\frac12(H_d-1)=B_d,
+\]
+because $H_d\ge H_4=25/12>2$.
+
+\emph{Case 2: $G$ is bipartite.}
+Let its bipartition class sizes satisfy $a\le b$, $a+b=n$.
+Since $\edges(G)\le ab$ and $\edges(G)\ge d(n-d)$,
+the monotonicity of $a(n-a)$ for $a\le n/2$ implies $a\ge d$.
+Thus
+\[
+ a=d+j,\quad b=d+r-j,\quad
+ 0\le j\le\lfloor r/2\rfloor.
+\]
+The number $t$ of missing cross-edges satisfies
+\begin{equation}\label{eq:missing}
+ t=ab-\edges(G)\le j(r-j).
+\end{equation}
+If $j=0$, then $t=0$ and $G=K_{d,n-d}$.
+Otherwise $(r,j)$ belongs to
+\[
+\{(2,1),(3,1),(4,1),(4,2)\},
+\]
+so $t\le1,2,3,4$, respectively.
+
+We first exhibit a $K_{d,d}$ subgraph.  If $j=1$, delete
+from the larger class an endpoint of each missing edge;
+this uses at most $t\le r-1$ vertices, leaving at least
+$(d+r-1)-(r-1)=d$ there and all $d+1$ vertices on
+the other side.  Choose $d$ in each class.
+If $(r,j)=(4,2)$, both original bipartition classes have
+size $d+2$.  Apply Lemma~\ref{lem:four} to the graph of
+missing cross-edges, delete its covering vertices (at most
+two from each class), and choose $d$ surviving vertices
+from each class.  Thus $K_{d,d}\subseteq G$ in every case
+with $j>0$, and consequently
+\[
+\{4,6,\ldots,2d\}\subseteq\cset(G).
+\]
+
+It remains to find an additional cycle length.  For $j=1$,
+choose $d+1$ vertices from each class.  The induced balanced
+bipartite graph is obtained from $K_{d+1,d+1}$ by removing
+at most $t\le r-1\le3$ edges.  Set $q=d+1\ge5$;
+then $t\le3\le q-2$, so Lemma~\ref{lem:hami}
+produces a cycle of length $2d+2$.
+For $(r,j)=(4,2)$, the entire graph has classes of size
+$q=d+2\ge6$ and at most four missing edges.  As
+$4\le q-2$, Lemma~\ref{lem:hami} supplies a cycle of
+length $2d+4$.
+Both lengths exceed $2d$; the harmonic sum is therefore
+strictly larger than $B_d$.  The sole equality case is
+$j=0$, namely $K_{d,n-d}$.
+\end{proof}
+
+\section{A reduction and the remaining regime}
+The elementary observation below is useful when searching
+for a minimal counterexample to \eqref{eq:erdos} at fixed $d$.
+\begin{proposition}[Deletion of a low-degree vertex]\label{prop:del}
+Fix $d\ge2$.  Suppose $n>2d$, $G$ has $n$ vertices,
+$\edges(G)\ge d(n-d)$, and $G$ has a vertex $v$ with
+$\deg_G(v)\le d$.  Then $G-v$ has $n-1\ge2d$ vertices,
+$\edges(G-v)\ge d((n-1)-d)$, and $\hc(G-v)\le\hc(G)$.
+\end{proposition}
+\begin{proof}
+Removing $v$ deletes at most $d$ edges and cannot introduce
+new cycle lengths.
+\end{proof}
+Thus a minimum-order counterexample to the inequality
+(at a fixed $d$, if one exists) must either have order $2d$
+or have minimum degree at least $d+1$.
+
+The results here do not cover arbitrary graphs of unbounded order
+for each fixed small $d$.  In particular, neither their correctness
+nor the exact finite checks below constitutes a solution of the
+unrestricted Erd\H{o}s problem.  The complete multipartite cycle
+spectrum is elementary; whether the weighted consequence already
+appears implicitly in published literature requires additional
+specialist review.  We therefore make no priority claim.
+
+\section*{Computational verification (limited scope)}
+The supplemental program \texttt{verify\_graph\_atlas.py} enumerates
+all isomorphism types of simple graphs on at most seven vertices
+using NetworkX's Graph Atlas.  It computes the cycle-length spectrum
+and reciprocal sum with exact rational arithmetic, then compares
+against $B_d$ for all admissible $2\le d\le n/2$ and edge thresholds.
+A local execution found 1,194 qualifying graph--parameter tests
+and no violations; the only equality isomorphism type in each
+parameter cell is $K_{d,n-d}$.  These finite tests do not directly
+cover Theorem~\ref{thm:band}, which starts at $n=8$, and do not
+replace its proof.
+
+\section*{Research status and attribution}
+This manuscript establishes precisely the restricted theorems
+stated above, conditional only on the cited standard theorems
+of graph theory.  It does \emph{not} settle Erd\H{o}s Problem \#65.
+The literature search for this draft was targeted rather than
+exhaustive; the claimed special-case statements have not been
+independently certified as new or peer-reviewed.  The author
+placeholder must be replaced by accurate authorship and affiliation
+information before public release.
+
+\begin{thebibliography}{9}
+\bibitem{MMPS}
+R. Montgomery, A. Milojevi\'c, A. Pokrovskiy, and B. Sudakov,
+\emph{Minimising the harmonic sum of cycle lengths},
+arXiv:2609.26401 (2026).
+\url{https://arxiv.org/abs/2609.26401}.
+\bibitem{EP}
+\emph{Erd\H{o}s Problems}, Problem \#65, ``Harmonic sums of cycle lengths.''
+\url{https://www.erdosproblems.com/65} (accessed 9 October 2026).
+\bibitem{Dirac}
+G. A. Dirac,
+\emph{Some theorems on abstract graphs},
+Proc. London Math. Soc. (3) \textbf{2} (1952), 69--81.
+\url{https://doi.org/10.1112/plms/s3-2.1.69}.
+\bibitem{Brandt}
+S. Brandt, \emph{A sufficient condition for all short cycles},
+Discrete Appl. Math. \textbf{79} (1997), 63--66.
+\url{https://doi.org/10.1016/S0166-218X(97)00032-2}.
+\bibitem{EG}
+P. Erd\H{o}s and T. Gallai,
+\emph{On maximal paths and circuits of graphs},
+Acta Math. Acad. Sci. Hungar. \textbf{10} (1959), 337--356.
+\url{https://doi.org/10.1007/BF02024498}.
+\bibitem{MoonMoser}
+J. Moon and L. Moser, \emph{On Hamiltonian bipartite graphs},
+Israel J. Math. \textbf{1} (1963), 163--165.
+\url{https://doi.org/10.1007/BF02759704}.
+\end{thebibliography}
+\end{document}
